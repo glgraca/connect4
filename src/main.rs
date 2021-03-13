@@ -15,33 +15,33 @@ fn main() {
 	r.cls();
 	println!("Starting Connect4");
 
-    let mut b = Board::new();
-    let human:&dyn Player = &mut Human::new('*');
-    let robot:&dyn Player = &mut Robot::new('R', '*');
-    let mut turn=true;
-    let mut winner=' ';
-    loop {
+	let mut b = Board::new();
+	let human:&dyn Player = &mut Human::new('*');
+	let robot:&dyn Player = &mut Robot::new('R', '*');
+	let mut turn=true;
+	let mut winner=' ';
+	loop {
 		r.cls();
 		r.show_board(&b);
 		if turn {
 			human.play(&mut b);
-    	} else {
-    		robot.play(&mut b);
-    	}
-    	turn=!turn;
-    	match b.check_winner() {
-    		Some(w) => {
-    			winner=w;
-    			break
-    		},
-    		None => ()
-    	}
-    }
+		} else {
+			robot.play(&mut b);
+		}
+		turn=!turn;
+		match b.check_winner() {
+			Some(w) => {
+				winner=w;
+				break
+			},
+			None => ()
+		}
+	}
 	r.cls();
 	r.show_board(&b);
 
 	if winner!=' ' {
-    	println!("Winner is {}", winner);
+		println!("Winner is {}", winner);
 	} else {
 		println!("It's a draw");
 	}
