@@ -24,7 +24,7 @@ fn main() {
 		r.cls();
 		r.show_board(&b);
 		if turn {
-    		human.play(&mut b);
+			human.play(&mut b);
     	} else {
     		robot.play(&mut b);
     	}
