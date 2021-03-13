@@ -42,7 +42,7 @@ impl Player for Human {
 				None => ()
 			}
 		}
-    	board.drop_piece(self.get_symbol(),col-1);
+		board.drop_piece(self.get_symbol(),col-1);
 	}
 
 }
