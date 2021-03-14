@@ -35,13 +35,16 @@ fn search(symbol:char, opponent_symbol: char, board: &Board, lookahead: i32, my_
 			}
 			if !valid_play {
 				weights[i]=0;
+				if lookahead==0 {
+					handles.push(None);
+				}
 			} else {
 				match b.check_winner() {
 					Some(w) => {
 						if w==symbol {
-							weights[i]=1;
+							weights[i]=1*(9-lookahead);
 						} else {
-							weights[i]=-2;
+							weights[i]=-1*(9-lookahead);
 						};
 						break;
 					},
@@ -62,9 +65,16 @@ fn search(symbol:char, opponent_symbol: char, board: &Board, lookahead: i32, my_
 		}
 		if lookahead==0 {
 			for i in 0..7 {
-				let w=handles[i].take().unwrap().join().unwrap();
-				for j in 0..w.len() {
-					weights[i]+=w[j];
+				match &handles[i] {
+					Some(h) => {
+						let w=handles[i].take().unwrap().join().unwrap();
+						for j in 0..w.len() {
+							weights[i]+=w[j];
+						}
+					},
+					None => {
+
+					}
 				}
 			}
 		}
