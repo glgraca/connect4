@@ -6,4 +6,4 @@ It uses ASCII and the game AI is very simple.
 
 Todo: better GUI (try ncurses)
 
-Todo: try to speed up AI with concurrency
+~~Todo: try to speed up AI with concurrency~~
