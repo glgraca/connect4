@@ -16,8 +16,8 @@ fn main() {
 	println!("Starting Connect4");
 
 	let mut b = Board::new();
-	let human:&dyn Player = &mut Human::new('*');
-	let robot:&dyn Player = &mut Robot::new('R', '*');
+	let human:&mut dyn Player = &mut Human::new('*');
+	let robot:&mut dyn Player = &mut Robot::new('R', '*');
 	let mut turn=true;
 	let mut winner=' ';
 	loop {

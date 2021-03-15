@@ -23,7 +23,7 @@ impl Player for Human {
 		self.symbol
 	}
 
-	fn play(&self, board: &mut Board) {
+	fn play(&mut self, board: &mut Board) {
 		let mut s=String::new();
 		let mut col:i32=0;
 		loop {

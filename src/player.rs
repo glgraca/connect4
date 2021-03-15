@@ -4,7 +4,7 @@ use rand::Rng;
 
 pub trait Player {
 
-	fn play(&self, board: &mut Board) {
+	fn play(&mut self, board: &mut Board) {
 		let mut rng = rand::thread_rng();
 		loop {
 			if board.drop_piece(self.get_symbol(),rng.gen_range(0..7)) {
