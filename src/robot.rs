@@ -49,7 +49,7 @@ fn search(symbol:char, opponent_symbol: char, board: &Board, lookahead: i32, max
 							weights[i]=1;
 						} else {
 							weights[i]=-1;
-						};
+						}
 						if lookahead==0 {
 							handles.push(None);
 						}
@@ -98,23 +98,21 @@ impl Player for Robot {
 				self.max_lookahead+=1;
 			}
 			//Print weights
-			//println!("{:?}", weights);
-			//let mut s=String::new();
-			//stdin().read_line(&mut s);
+			println!("{:?}", weights);
+			let mut s=String::new();
+			stdin().read_line(&mut s);
 			//
 			let mut index: i32=0;
 			let mut score: i32=i32::MIN;
 			for i in 0..weights.len() {
 				//If Robot wins next play, weight is 1
 				//If Human wins next play, weight is 0
-				if weights[i]<2 {
+				if weights[i].abs()<2 {
 					index=i as i32;
 					break;
-				} else {
-					if weights[i]>score && !board.is_col_full(i) {
-						score=weights[i];
-						index=i as i32;
-					}
+				} else if weights[i]>score && !board.is_col_full(i) {
+					score=weights[i];
+					index=i as i32;
 				}
 			}
 			board.drop_piece(self.get_symbol(), index);
